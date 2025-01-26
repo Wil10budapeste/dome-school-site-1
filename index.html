@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dome School - Educação Bilíngue</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function switchLanguage(lang) {
+      const contentPT = {
+        headerLinks: ["Sobre Nós", "Programas", "Contato"],
+        heroTitle: "Onde Aprender é Divertido",
+        heroText: "A Dome School oferece um ambiente bilíngue para crianças crescerem, explorarem e terem sucesso.",
+        heroButton: "Saiba Mais",
+        aboutTitle: "Sobre Nós",
+        aboutText: "Na Dome School, acreditamos em cultivar a criatividade, a curiosidade e a confiança em cada criança. Nossos programas bilíngues são projetados para formar cidadãos globais enquanto fomentam o amor pelo aprendizado.",
+        programsTitle: "Nossos Programas",
+        programItems: [
+          { title: "Programa para Bebês", text: "Para idades de 1-3 anos. Exploração inicial e habilidades bilíngues fundamentais." },
+          { title: "Programa Pré-Escolar", text: "Para idades de 3-5 anos. Preparando crianças para um futuro brilhante por meio de aprendizado baseado em brincadeiras." },
+          { title: "Atividades Pós-Aulas", text: "Atividades de enriquecimento que estimulam criatividade, linguagem e habilidades sociais." }
+        ],
+        contactTitle: "Contato",
+        contactButton: "Enviar Mensagem",
+        valuesTitle: "Nossos Valores",
+        valuesList: [
+          "Respeito pelo próximo",
+          "Incentivo à criatividade",
+          "Amor pelo aprendizado",
+          "Formação de cidadãos globais"
+        ],
+        missionTitle: "Nossa Missão",
+        missionText: "Proporcionar uma educação bilíngue de excelência, que prepare crianças para enfrentar os desafios de um mundo globalizado com confiança, criatividade e empatia."
+      };
+
+      const contentEN = {
+        headerLinks: ["About Us", "Programs", "Contact"],
+        heroTitle: "Where Learning is Fun",
+        heroText: "Dome School provides a bilingual environment for children to grow, explore, and succeed.",
+        heroButton: "Learn More",
+        aboutTitle: "About Us",
+        aboutText: "At Dome School, we believe in fostering creativity, curiosity, and confidence in every child. Our bilingual programs are designed to nurture global citizens while encouraging a love for learning.",
+        programsTitle: "Our Programs",
+        programItems: [
+          { title: "Baby Program", text: "For ages 1-3. Early exploration and foundational bilingual skills." },
+          { title: "Preschool Program", text: "For ages 3-5. Preparing children for a bright future through play-based learning." },
+          { title: "After-School Activities", text: "Enrichment activities that foster creativity, language, and social skills." }
+        ],
+        contactTitle: "Contact",
+        contactButton: "Send Message",
+        valuesTitle: "Our Values",
+        valuesList: [
+          "Respect for others",
+          "Encouraging creativity",
+          "Love for learning",
+          "Developing global citizens"
+        ],
+        missionTitle: "Our Mission",
+        missionText: "To provide excellent bilingual education, preparing children to face the challenges of a globalized world with confidence, creativity, and empathy."
+      };
+
+      const content = lang === 'en' ? contentEN : contentPT;
+
+      document.querySelectorAll('header nav ul li a').forEach((link, index) => {
+        link.textContent = content.headerLinks[index];
+      });
+      document.querySelector('#hero-title').textContent = content.heroTitle;
+      document.querySelector('#hero-text').textContent = content.heroText;
+      document.querySelector('#hero-button').textContent = content.heroButton;
+      document.querySelector('#about-title').textContent = content.aboutTitle;
+      document.querySelector('#about-text').textContent = content.aboutText;
+      document.querySelector('#programs-title').textContent = content.programsTitle;
+
+      const programItems = document.querySelectorAll('#programs .program-item');
+      content.programItems.forEach((item, index) => {
+        programItems[index].querySelector('h4').textContent = item.title;
+        programItems[index].querySelector('p').textContent = item.text;
+      });
+
+      document.querySelector('#contact-title').textContent = content.contactTitle;
+      document.querySelector('#contact-button').textContent = content.contactButton;
+      document.querySelector('#values-title').textContent = content.valuesTitle;
+      
+      const valuesList = document.querySelector('#values ul');
+      valuesList.innerHTML = ''; // Clear previous values
+      content.valuesList.forEach(value => {
+        const li = document.createElement('li');
+        li.textContent = value;
+        valuesList.appendChild(li);
+      });
+
+      document.querySelector('#mission-title').textContent = content.missionTitle;
+      document.querySelector('#mission-text').textContent = content.missionText;
+    }
+
+    function showPopup() {
+      const popup = document.createElement('div');
+      popup.classList = "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50";
+      popup.innerHTML = `
+        <div class="bg-white rounded-2xl shadow-lg p-6 max-w-sm text-center">
+          <h2 class="text-2xl font-bold text-blue-600">Matrículas 2025 Abertas!</h2>
+          <p class="mt-4 text-gray-600">Garanta já a vaga do seu filho na Dome School e ofereça a melhor educação bilíngue para o futuro dele.</p>
+          <button onclick="closePopup()" class="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Fechar</button>
+        </div>
+      `;
+      document.body.appendChild(popup);
+    }
+
+    function closePopup() {
+      const popup = document.querySelector('.fixed.inset-0');
+      if (popup) {
+        popup.remove();
+      }
+    }
+
+    window.onload = function() {
+      setTimeout(showPopup, 3000);
+    };
+  </script>
+</head>
+<body class="min-h-screen bg-gradient-to-r from-blue-100 to-green-100 p-6">
+  <!-- Header -->
+  <header class="bg-white shadow-md rounded-2xl p-4 flex justify-between items-center">
+    <img src="Logo_Dome_School_Educacao_Bilingue.jpg" alt="Dome School Logo" class="h-12">
+    <nav>
+      <ul class="flex space-x-6">
+        <li><a href="#about" class="text-lg font-medium text-gray-700 hover:text-blue-600">Sobre Nós</a></li>
+        <li><a href="#programs" class="text-lg font-medium text-gray-700 hover:text-blue-600">Programas</a></li>
+        <li><a href="#contact" class="text-lg font-medium text-gray-700 hover:text-blue-600">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Language Switcher -->
+  <div class="flex justify-end mt-4">
+    <button class="px-4 py-2 bg-blue-500 text-white rounded-l-lg" onclick="switchLanguage('pt')">Português</button>
+    <button class="px-4 py-2 bg-gray-300 text-gray-700 rounded-r-lg" onclick="switchLanguage('en')">English</button>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="mt-10 flex flex-col items-center text-center">
+    <h2 id="hero-title" class="text-4xl font-extrabold text-blue-700">Onde Aprender é Divertido</h2>
+    <p id="hero-text" class="mt-4 text-lg text-gray-600 max-w-2xl">
+      A Dome School oferece um ambiente bilíngue para crianças crescerem, explorarem e terem sucesso.
+    </p>
+    <button id="hero-button" class="mt-6 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600">
+      Saiba Mais
+    </button>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="mt-16">
+    <div class="bg-white shadow-lg rounded-2xl p-6">
+      <h3 id="about-title" class="text-2xl font-semibold text-blue-600">Sobre Nós</h3>
+      <p id="about-text" class="mt-4 text-gray-600">
+        Na Dome School, acreditamos em cultivar a criatividade, a curiosidade e a confiança em cada criança. Nossos programas bilíngues são projetados para formar cidadãos globais enquanto fomentam o amor pelo aprendizado.
+      </p>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section id="values" class="mt-16">
+    <div class="bg-white shadow-lg rounded-2xl p-6">
+      <h3 id="values-title" class="text-2xl font-semibold text-blue-600">Nossos Valores</h3>
+      <ul class="mt-4 list-disc list-inside text-gray-600">
+        <li>Respeito pelo próximo</li>
+        <li>Incentivo à criatividade</li>
+        <li>Amor pelo aprendizado</li>
+        <li>Formação de cidadãos globais</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section id="mission" class="mt-16">
+    <div class="bg-white shadow-lg rounded-2xl p-6">
+      <h3 id="mission-title" class="text-2xl font-semibold text-blue-600">Nossa Missão</h3>
+      <p id="mission-text" class="mt-4 text-gray-600">
+        Proporcionar uma educação bilíngue de excelência, que prepare crianças para enfrentar os desafios de um mundo globalizado com confiança, criatividade e empatia.
+      </p>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="mt-16">
+    <h3 id="programs-title" class="text-2xl font-semibold text-blue-600">Nossos Programas</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+      <div class="program-item bg-white shadow-lg rounded-2xl p-6">
+        <h4 class="text-xl font-medium text-blue-500">Programa para Bebês</h4>
+        <p class="mt-2 text-gray-600">Para idades de 1-3 anos. Exploração inicial e habilidades bilíngues fundamentais.</p>
+      </div>
+      <div class="program-item bg-white shadow-lg rounded-2xl p-6">
+        <h4 class="text-xl font-medium text-blue-500">Programa Pré-Escolar</h4>
+        <p class="mt-2 text-gray-600">Para idades de 3-5 anos. Preparando crianças para um futuro brilhante por meio de aprendizado baseado em brincadeiras.</p>
+      </div>
+      <div class="program-item bg-white shadow-lg rounded-2xl p-6">
+        <h4 class="text-xl font-medium text-blue-500">Atividades Pós-Aulas</h4>
+        <p class="mt-2 text-gray-600">Atividades de enriquecimento que estimulam criatividade, linguagem e habilidades sociais.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="mt-16">
+    <h3 class="text-2xl font-semibold text-blue-600 text-center">Momentos na Dome School</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+      <img src="https://via.placeholder.com/300x200" alt="Crianças pintando" class="rounded-lg shadow-lg">
+      <img src="https://via.placeholder.com/300x200" alt="Crianças brincando ao ar livre" class="rounded-lg shadow-lg">
+      <img src="https://via.placeholder.com/300x200" alt="Crianças em atividade de leitura" class="rounded-lg shadow-lg">
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="mt-16">
+    <h3 id="contact-title" class="text-2xl font-semibold text-blue-600">Contato</h3>
+    <form class="mt-6 bg-white shadow-lg rounded-2xl p-6 max-w-md mx-auto">
+      <input type="text" placeholder="Seu Nome" class="w-full mb-4 px-4 py-2 border rounded-lg" />
+      <input type="email" placeholder="Seu Email" class="w-full mb-4 px-4 py-2 border rounded-lg" />
+      <textarea placeholder="Sua Mensagem" class="w-full mb-4 px-4 py-2 border rounded-lg"></textarea>
+      <button id="contact-button" type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+        Enviar Mensagem
+      </button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-16 text-center text-gray-500 text-sm">
+    &copy; <script>document.write(new Date().getFullYear());</script> Dome School - Educação Bilíngue. Todos os direitos reservados.
+  </footer>
+</body>
+</html>
